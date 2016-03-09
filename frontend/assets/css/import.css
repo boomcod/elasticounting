@@ -1,0 +1,10 @@
+#import pre {
+    height: auto;
+    max-height: 200px;
+    overflow: auto;
+    overflow-y: none;
+}
+
+#import h4.panel-title {
+    font-size: 14px;
+}

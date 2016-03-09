@@ -1,0 +1,51 @@
+<form class="form-inline" role="form" ng-submit="submitSave(operation)">
+    <div class="col-md-8">
+        <div class="col-md-12 text-center">
+            <div class="form-group">
+                <label for="type">Date</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="calendarPopup.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="openCalendarPopup()"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="label">Label</label>
+                <input type="text" ng-model="operation.label" class="form-control" id="label" placeholder="Label" />
+            </div>
+        </div>
+        <div class="col-md-12 text-center" style="margin-top: 20px;">
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="text" ng-model="operation.amount" class="form-control" id="amount" placeholder="13.05" />
+            </div>
+            <div class="form-group">
+                <label for="category">Category</label>
+            </div>
+            <div class="form-group">
+                <input type="text" id="category" ng-model="operation.category" uib-typeahead="category.name for category in filterBySign(operation.amount) | filter:{name:$viewValue} | limitTo:8" class="form-control" typeahead-show-hint="true" typeahead-min-length="0" typeahead-on-select="typeaheadOnSelected($item, $model, $label)">
+            </div>
+            <div class="form-group">
+                <a ng-click="openNewCategoryDialog(operation, operation);" style="cursor:pointer;" title="Add">
+                    <span class="glyphicon glyphicon-plus" style="font-size: 20px;"></span>
+                </a>
+            </div>
+            <div class="form-group">
+                <a ng-click="openEditCategoryDialog(operation);" style="cursor:pointer;" title="Edit">
+                    <span class="glyphicon glyphicon-edit" style="font-size: 20px;"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 text-left">
+        <input type="submit" class="btn btn-primary" value="Save" />
+        <input type="button" class="btn btn-primary" value="Reset" ng-click="reset()" />
+    </div>
+</form>
+<div class="clearfix"></div>
+<div class="form-group" style="margin-top: 20px;">
+    <div ng-if="submitProcessing" role="alert"><pre class="alert alert-info">{{submitProcessing}}</pre></div>
+    <div ng-if="submitResultError" role="alert"><pre class="alert alert-danger">{{submitResultError | json}}</pre></div>
+    <div ng-if="submitResult" role="alert"><pre class="alert alert-success">{{submitResult | json}}</pre></div>
+</div>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Elasticounting</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="bower_components\bootstrap\dist\css\bootstrap.min.css"> -->
+    <link rel="stylesheet" href="bower_components\ng-dialog\css\ngDialog.css">
+    <link rel="stylesheet" href="bower_components\ng-dialog\css\ngDialog-theme-default.css">
+    <link rel="stylesheet" href="bower_components\ng-dialog\css\ngDialog-theme-plain.css">
+    <link rel="stylesheet" href="bower_components\ng-dialog\css\ngDialog-custom-width.css">
+    <link rel="stylesheet" href="assets\css\global.css">
+    <link rel="stylesheet" href="assets\css\import.css">
+    <link rel="stylesheet" href="assets\css\categoryNewDialog.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="#/" class="navbar-brand">Home</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#/operations"><span class="glyphicon glyphicon-th-list"></span> Operations</a></li>
+                    <li><a href="#/categories"><span class="glyphicon glyphicon-th-large"></span> Categories</a></li>
+                    <li><a href="#/import"><span class="glyphicon glyphicon-import"></span> Import</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <error></error>
+    <div class="main">
+        <div class="container">
+            <div ng-view></div>
+        </div>
+    </div>
+    <!--     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script> -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-linq/angular-linq.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/ng-dialog/js/ngDialog.js"></script>
+    <script src="bower_components/elasticsearch/elasticsearch.angular.js"></script>
+    <!-- Route/Config -->
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <!-- TypeScript -->
+    <script src="tsc.js"></script>
+    <!-- Framework -->
+    <script src="assets/framework/utils/utils.js"></script>
+    <script src="assets/framework/utils/datePickerHelper.js"></script>
+    <!-- External services -->
+    <script src="app/shared/elasticsearchService.js"></script>
+    <script src="app/shared/controllerBaseService.js"></script>
+    <script src="app/shared/dalBaseService.js"></script>
+    <script src="app/shared/error.js"></script>
+    <script src="app/category/partials/categoryDialogHelper.js"></script>
+    <!-- Business services/controllers/filters -->
+    <script src="app/import/importController.js"></script>
+    <script src="app/import/importService.js"></script>
+    <script src="app/category/categoryController.js"></script>
+    <script src="app/category/categoryService.js"></script>
+    <script src="app/operation/operationController.js"></script>
+    <script src="app/operation/operationService.js"></script>
+</body>

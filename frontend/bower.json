@@ -1,0 +1,15 @@
+{
+  "name": "account-project",
+  "dependencies": {
+    "angular": "1.4.9",
+    "angular-route": "1.4.9",
+    "angular-resource": "1.4.9",
+    "angular-bootstrap": "latest",
+    "angular-animate": "latest",
+    "angular-linq": "latest",
+    "bootstrap": "3.3.6",
+    "elasticsearch": "10.1.3",
+    "ng-dialog": "~0.5.6",
+    "angular-messages": "~1.5.0"
+  }
+}

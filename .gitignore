@@ -1,0 +1,6 @@
+frontend/.bower-cache
+frontend/.bower-registry
+frontend/.bower-tmp
+frontend/bower_components
+
+backend/node_modules

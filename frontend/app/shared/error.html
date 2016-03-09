@@ -1,0 +1,7 @@
+<div id='mainError' class='alert alert-danger' role='alert' ng-show='hasError'>
+    <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> {{ message }}
+    <button type="button" class="btn btn-link" ng-click="isDetailsShown=!isDetailsShown">Show details</button>
+    <div ng-show='isDetailsShown' style="margin-top: 10px">
+        <pre>{{ details | json }}</pre>
+    </div>
+</div>

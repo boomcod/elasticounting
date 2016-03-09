@@ -1,0 +1,10 @@
+{
+  "name": "account-project",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "elasticsearch": "^10.1.2",
+    "express": "^4.13.3",
+    "method-override": "^2.3.5"
+  }
+}

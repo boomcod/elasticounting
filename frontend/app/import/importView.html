@@ -1,0 +1,81 @@
+<div id="import" class="panel-body">
+    <form name="myForm" ng-submit="submit()">
+        <uib-accordion close-others="false">
+            <uib-accordion-group is-open="openInfo">
+                <uib-accordion-heading>
+                    Copy/Paste your accouting information & parse it <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': openInfo, 'glyphicon-chevron-right': !openInfo}"></i>
+                </uib-accordion-heading>
+                <div class="form-group">
+                    <textarea class="form-control" rows="6" ng-model="pastedText" ng-change="parseLabel(pastedText, regex)"></textarea>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">Regex</div>
+                        <input type="text" class="form-control" ng-model="regex" ng-change="parseLabel(pastedText, regex)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">Labels</div>
+                        <input type="text" class="form-control" ng-model="labels" ng-change="parseLabel(pastedText, regex)" />
+                    </div>
+                </div>
+            </uib-accordion-group>
+            <uib-accordion-group is-open="openPreviewJson">
+                <uib-accordion-heading>
+                    Json preview <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': openPreviewJson, 'glyphicon-chevron-right': !openPreviewJson}"></i>
+                </uib-accordion-heading>
+                <pre ng-model="jsonParsedText">{{listOperations | json}}</pre>
+            </uib-accordion-group>
+        </uib-accordion>
+        <div style="margin-top: 20px;" ng-if="listOperations.length > 0">
+            <uib-accordion close-others="false">
+                <uib-accordion-group is-open="openInfo">
+                    <uib-accordion-heading>
+                        Operations to import <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': openInfo, 'glyphicon-chevron-right': !openInfo}"></i>
+                    </uib-accordion-heading>
+                    <div class="form-group text-right">
+                        <input type="submit" id="submit" class="btn btn-primary" value="Send to ElasticSearch" />
+                    </div>
+                    <div class="form-group">
+                        <div ng-if="submitProcessing" role="alert"><pre class="alert alert-info">{{submitProcessing}}</pre></div>
+                        <div ng-if="submitResultError" role="alert"><pre class="alert alert-danger">{{submitResultError | json}}</pre></div>
+                        <div ng-if="submitResult" role="alert"><pre class="alert alert-success">{{submitResult | json}}</pre></div>
+                    </div>
+                    <table class="table table-striped table-hover table-condensed">
+                        <tr>
+                            <th>Date</th>
+                            <th>Label</th>
+                            <th>Amount</th>
+                            <th colspan="3">Category</th>
+                        </tr>
+                        <tr ng-repeat="operation in listOperations | limitTo:pageSize:(currentPage - 1)*pageSize">
+                            <td>{{operation.date}}</td>
+                            <td>{{operation.label}}</td>
+                            <td>{{operation.amount}}</td>
+                            <td>
+                                <input type="text" ng-model="operation.category" uib-typeahead="category.name for category in filterBySign(operation.amount) | filter:{name:$viewValue} | limitTo:8" class="form-control" typeahead-show-hint="true" typeahead-min-length="0" typeahead-on-select="typeaheadOnSelected($item, $model, $label)">
+                            </td>
+                            <td>
+                                <a ng-click="openNewCategoryDialog(operation);" style="cursor:pointer;" title="Add">
+                                    <span class="glyphicon glyphicon-plus" style="font-size: 20px;"></span>
+                                </a>
+                            </td>
+                            <td>
+                                <a ng-click="openEditCategoryDialog(operation);" style="cursor:pointer;" title="Edit">
+                                    <span class="glyphicon glyphicon-edit" style="font-size: 20px;"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="text-center">
+                        <uib-pagination total-items="listOperations.length" items-per-page="pageSize" max-size="10" ng-model="currentPage" boundary-links="true" direction-links="true"></uib-pagination>
+                    </div>
+                    <div class="form-group text-right">
+                        <input type="submit" id="submit" class="btn btn-primary" value="Send to ElasticSearch" />
+                    </div>
+                </uib-accordion-group>
+            </uib-accordion>
+        </div>
+    </form>
+</div>
