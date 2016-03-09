@@ -22,7 +22,15 @@ Elasticounting is a very simple SPA (Single Page Application) example using Elas
 
 ## Configuration
 
-You can change elasticsearch setting in /config.js file: host/index naming, ...
+You can change elasticsearch setting in `/config.js` file: 
+
+```javascript
+var ElasticSearchConfig = {
+    host: 'localhost:9200',
+    baseIndex: 'accounting',
+    maxItemReturn: 10000
+}
+```
 
 ## Author
 
